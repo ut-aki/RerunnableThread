@@ -1,7 +1,4 @@
-package demo;
-
 import java.lang.Thread;
-import java.util.ArrayList;
 
 public abstract class RerunnableThread extends Thread {
     private Boolean flag;
