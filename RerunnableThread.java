@@ -27,7 +27,7 @@ public abstract class RerunnableThread extends Thread {
 
     public void waitOnce(Object lockObj) {
         synchronized (lockObj) {
-            while (!this.getFlag()) {
+            while (!this.flag) {
                 try {
                     lockObj.wait();
                 } catch (InterruptedException e) {
