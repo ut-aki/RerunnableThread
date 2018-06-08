@@ -1,5 +1,5 @@
 # RerunnableThread
-RunnableThread abstract class can handle each multithread's state, which is whether "waiting" or "re-running". Its state is manipulated by RunnableThread instance boolean variable 'flag'. This class inherits Thread class.  
+*RunnableThread abstract class* can handle each multi-thread's state, which is whether "waiting" or "re-running". Its state is manipulated by RunnableThread instance boolean variable 'flag'. This class inherits Thread class.  
 The `waitOnce()` method causes thread's state "waiting" and the `rerun()` method "re-running".
 
 ## Constructors
@@ -17,4 +17,41 @@ The `waitOnce()` method causes thread's state "waiting" and the `rerun()` method
 | 4 | protected void setTrue() | Causes flag to be true. `setFalse()` method causes it to be false. |
 
 ## How to Use
-MultiThreaded class which is 'ThreadDemo' class in sample program needs to inherit *RunnableThread* class.
+Here, 'ThreadDemo' class in sample program is referred to multi-threaded class and 'DemoController' class is referred to controller class.  
+Steps for implement is shown below.  
+- Multi-threaded class inherits RunnableThread class and initiates Object for lock.
+```java
+public class MultiThreaded extends RerunnableThread {
+  private static Object lock = new Object();
+  // some code...
+}
+```
+- Describe either constructor in multi-threaded class as shown.
+```java
+public MultiThreaded() {
+  super();
+}
+```
+```java
+public MultiThreaded(Boolean flag) {
+  super(flag);
+}
+```
+- Override `rerun()` in multi-threaded class as shown.
+```java
+public void rerun() {
+  super.rerun(lock)
+}
+```
+- Describe `waitOnce()` within synchronized block in overriding `run()`.
+```java
+public void run() {
+  // some code...
+  synchronized (lock) {
+    // some code...
+    super.waitOnce(lock);
+    // some code...
+  }
+  // some code...
+}
+```
