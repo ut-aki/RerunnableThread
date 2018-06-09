@@ -18,7 +18,7 @@ The `waitOnce()` method causes thread's state "waiting" and the `rerun()` method
 
 ## How to Use
 Here, 'ThreadDemo' class in sample program is referred to multi-threaded class and 'DemoController' class is referred to controller class.  
-Steps for implement is shown below.  
+Steps for implement are shown below.  
 - Multi-threaded class inherits RunnableThread class and initiates Object for lock.
 ```java
 public class MultiThreaded extends RerunnableThread {
@@ -40,10 +40,10 @@ public MultiThreaded(Boolean flag) {
 - Override `rerun()` in multi-threaded class as shown.
 ```java
 public void rerun() {
-  super.rerun(lock)
+  super.rerun(lock);
 }
 ```
-- Describe `waitOnce()` within synchronized block in overriding `run()`.
+- Describe `waitOnce()` inside synchronized block in overriding `run()` method.
 ```java
 public void run() {
   // some code...
@@ -55,3 +55,4 @@ public void run() {
   // some code...
 }
 ```
+- Describe `rerun()` in controller class wherever you like below `start()`.
